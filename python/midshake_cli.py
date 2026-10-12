@@ -104,19 +104,72 @@ def command_tokens(path):
         print(t)
 
 def command_tfind(path):
+    # 1. Check if the file exists
     if not os.path.isfile(path):
         print(f"Error: File not found: {path}")
         return
+        
+    # 1. Read the file as a list of lines
+    with open(path, 'r', encoding='utf-8') as f:
+        lines = f.readlines()
+    
+    new_lines = []
+    for line in lines:
+        # 2. Make your edits
+        if cline in line and no_comments == True:
+            line = line.removesuffix(cline)
+        
+        # 3. Save the (potentially modified) line
+        new_lines.append(line)
+    
+    # 4. Put the text back together into a single string
+    ncsource = "".join(new_lines)
+    
+    # 5. Optional: Save it back to the file
+    with open(path, 'w', encoding='utf-8') as f:
+        f.write(ncsource)
+    #------------test------------
 
-    with open(path, "r", encoding="utf-8") as f:
-        source = f.read()
-    tokenizer = Tokenizer(source)
-    tokens = tokenizer.tokenize()
+                
+            
+        # 3. Tokenize the source code
+        tokenizer = Tokenizer(ncsource)
+        tokens = tokenizer.tokenize()
+        
+        # 4. Get user input for the target token
+        trequest = input("What token would you like to find? ")
+        
+        # 5. Initialize tracking variables
+        count = 0
+        found_lines = []
+        no_comments = False
+    
+        if command.startswith("--exclude-comments")
+            no_comments = True
+            #if line.startswith("^")
+        
+        # Split the original text into lines to track line numbers (1-indexed)
+        lines = source.splitlines()
+    
+        
+        
+        # 6. Search through tokens and match with original lines
+        # (Assuming your Tokenizer objects or tokens have a .value attribute)
+        for token in tokens:
+            # Adjust 'token' to 'token.value' if your Tokenizer returns token objects
+            if token == trequest: 
+    
+                            count += 1
+                
+                                
+                
+        # 7. Print the final summaries (outside the loop)
+        print(f"'{trequest}' has been found {count} times.")
+        if count > 0:
+            print(f"'{trequest}' found on lines: {', '.join(found_lines)}")
+        else:
+            print(f"'{trequest}' was not found in the file.")
 
-    trequest = input("What token would you like to find")
-
-    for t in tokens:
-        pass
 
 # ------------------------------------------------------------
 # Command: print AST

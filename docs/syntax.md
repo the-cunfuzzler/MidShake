@@ -20,6 +20,10 @@ PROCLAIM the value of name;
 PROCLAIM the string "Hello";
 ```
 
+To create or edit files use this:
+ 
+`IN the file <file_name> WRITE <value>;`
+
 ### Variables
 
 Variables are created with `LET` and updated with `SET`.
@@ -100,9 +104,6 @@ MidShake currently supports a small set of value forms:
 - `IS equal to`
 - `IS not equal to`
 
-###File I/O
-
-- `IN the file <file_name> WRITE <value>;`
   
 ## Standard library
 
